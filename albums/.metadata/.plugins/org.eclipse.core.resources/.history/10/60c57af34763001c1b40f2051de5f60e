@@ -1,0 +1,20 @@
+package com.esra.albums.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.esra.albums.repositories.AlbumRepository;
+
+@Service
+public class AlbumService {
+	@Autowired
+	private AlbumRepository aRepo;
+	
+	
+	/* (this codes = @Autowired)
+	 public AlbumService(AlbumRepository repository){
+	 	this.aRepo = repository;
+	 }
+	 */
+
+}

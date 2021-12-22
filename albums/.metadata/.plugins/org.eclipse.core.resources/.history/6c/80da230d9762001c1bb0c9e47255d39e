@@ -1,0 +1,5 @@
+package com.esra.albums.models;
+
+public class Album {
+
+}
