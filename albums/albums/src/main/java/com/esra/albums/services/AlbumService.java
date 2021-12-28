@@ -21,28 +21,32 @@ public class AlbumService {
 	 */
 	
 	//Get Every Single Album from Database and Return To ArrayList
-	
 	public List<Album> getAllAlbums(){
 		return this.aRepo.findAll();
 	}
 	
 	//Get One Album
-	
 	public Album getOneAlbum(Long id) {
 		return this.aRepo.findById(id).orElse(null);
 	}
 		
 	//Create Album
-	
 	public Album createAlbum(Album album) {
 		return this.aRepo.save(album);
 	}
 	
 	//Update Album
-	
 	public Album editAlbum(Album album) {
 		return this.aRepo.save(album);
 	}
+	
+	//Delete Album
+	public String deletealbum(Long id) {
+		this.aRepo.deleteById(id);
+		return "Album has been deleted";
+	}
+	
+	
 				
 				
 
