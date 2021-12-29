@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -39,6 +40,22 @@ public class HomeController {
 		this.aService.createAlbum(album);
 		return "redirect:/";
 	}
+	@GetMapping("/edit/{id}")
+	public String editRecord(@PathVariable("id") Long id, @ModelAttribute("album") Album album, Model viewModel) {
+		viewModel.addAttribute("album",this.aService.getOneAlbum(id));
+		return "edit.jsp";
+	}
+	@PostMapping("/edit/{id}")
+	public String edit(@Valid @ModelAttribute("album") Album album, BindingResult result, @PathVariable("id") Long id, Model viewModel) {
+		if (result.hasErrors()) {
+			viewModel.addAttribute("album",this.aService.getOneAlbum(id));
+			return "edit.jsp";
+		}
+		this.aService.editAlbum(album);
+		return "redirect:/";
+		
+	}
+	
 	
 	@PostMapping("/htmladd")
 	public String htmlAdd(@RequestParam("albumName") String album, @RequestParam("bandName") String band, @RequestParam("year") Integer year) {

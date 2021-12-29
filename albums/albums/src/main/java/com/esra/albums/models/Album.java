@@ -25,7 +25,7 @@ public class Album {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
-	@Size(min=1, max=200 message="Hey, why are you putting in invalid lenghts for the album?")
+	@Size(min=1, max=200, message="Hey, why are you putting in invalid lenghts for the album?")
 	private String albumName;
 	@NotBlank
 	private String bandName;
