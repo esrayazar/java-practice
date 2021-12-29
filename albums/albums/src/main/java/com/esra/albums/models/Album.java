@@ -97,6 +97,12 @@ public class Album {
 	public void setYear(Integer year) {
 		this.year = year;
 	}
+	public Album(String albumName, String bandName, Integer year) {
+		this.albumName = albumName;
+		this.bandName = bandName;
+		this.year = year;
+	}
+	
 	
 	
 	
