@@ -20,5 +20,10 @@ public class HomeController {
 	return "index.jsp";
 	}
 	
+	@GetMapping("/new")
+	public String add() {
+		return "add.jsp";
+	}
+	
 	
 }
