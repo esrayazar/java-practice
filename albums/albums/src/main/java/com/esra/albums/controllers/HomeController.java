@@ -1,9 +1,13 @@
 package com.esra.albums.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,8 +28,16 @@ public class HomeController {
 	}
 	
 	@GetMapping("/new")
-	public String add() {
+	public String add(@ModelAttribute("album") Album album) {
 		return "add.jsp";
+	}
+	@PostMapping("/new")
+	public String addRecord(@Valid @ModelAttribute("album") Album album, BindingResult result) {
+		if(result.hasErrors()) {
+			return "add.jsp";
+		}
+		this.aService.createAlbum(album);
+		return "redirect:/";
 	}
 	
 	@PostMapping("/htmladd")
