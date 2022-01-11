@@ -24,7 +24,7 @@
 <c:forEach items= "${allAlbums}" var="album">
 <tr>
 <td>${album.id} </td>
-<td>${album.albumName} </td>
+<td><a href="/details/${album.id}">${album.albumName} </a></td>
 <td>${album.bandName} </td>
 <td>${album.year} </td>
 </tr>
