@@ -5,6 +5,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +21,7 @@ public class Song {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="album_id")
 	private Album albumSongIsOn;
+	
 	
 	
 	public Song() {
@@ -41,6 +44,12 @@ public class Song {
 	}
 	public void setLength(String length) {
 		this.length = length;
+	}
+	public Album getAlbumSongIsOn() {
+		return albumSongIsOn;
+	}
+	public void setAlbumSongIsOn(Album albumSongIsOn) {
+		this.albumSongIsOn = albumSongIsOn;
 	}
 	
 	

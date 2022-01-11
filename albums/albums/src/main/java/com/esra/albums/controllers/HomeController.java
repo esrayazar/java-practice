@@ -53,9 +53,14 @@ public class HomeController {
 		}
 		this.aService.editAlbum(album);
 		return "redirect:/";
-		
 	}
 	
+	@GetMapping("/details/{id}")
+	public String show(@PathVariable("id") Long id, Model viewModel) {
+	viewModel.addAttribute("albumDetails", this.aService.getOneAlbum(id));
+	return "show.jsp";
+	
+	}
 	
 	@PostMapping("/htmladd")
 	public String htmlAdd(@RequestParam("albumName") String album, @RequestParam("bandName") String band, @RequestParam("year") Integer year) {

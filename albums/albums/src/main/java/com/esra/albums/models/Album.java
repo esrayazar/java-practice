@@ -69,6 +69,12 @@ public class Album {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	public List<Song> getSongs() {
+		return songs;
+	}
+	public void setSongs(List<Song> songs) {
+		this.songs = songs;
+	}
 	public Album() {
 		
 	}
