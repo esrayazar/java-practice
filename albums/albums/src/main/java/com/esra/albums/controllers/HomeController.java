@@ -1,5 +1,6 @@
 package com.esra.albums.controllers;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,19 +15,40 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.esra.albums.models.Album;
 import com.esra.albums.services.AlbumService;
+import com.esra.albums.services.UserService;
 
 @Controller
 public class HomeController {
 	
 	@Autowired
 	private AlbumService aService;
+	@Autowired
+	private UserService uService;
 
-
+	
 	@GetMapping("/")
-	public String index(Model viewModel) {
+	public String landing(Model viewModel) {
+		viewModel.addAttribute("allUsers", this.uService.getAllUSers());
+		return "landing.jsp";
+	}
+	
+	@PostMapping("/login")
+	public String login(HttpSession session, @RequestParam("usersToLogin") Long userid) {
+		session.setAttribute("user__id",userid );
+		return "redirect:/dashboard";
+	}
+	
+
+	@GetMapping("/dashboard")
+	public String index(Model viewModel,HttpSession session) {
+	if(session.getAttribute("user__id")==null) {
+		return "redirect:/";
+	}
+	viewModel.addAttribute("user", this.uService.getOneUser((Long)session.getAttribute("use__id" )));
 	viewModel.addAttribute( "allAlbums", this.aService.getAllAlbums());
 	return "index.jsp";
 	}
+
 	
 	@GetMapping("/new")
 	public String add(@ModelAttribute("album") Album album) {
@@ -38,7 +60,7 @@ public class HomeController {
 			return "add.jsp";
 		}
 		this.aService.createAlbum(album);
-		return "redirect:/";
+		return "redirect:/dashboard";
 	}
 	@GetMapping("/edit/{id}")
 	public String editRecord(@PathVariable("id") Long id, @ModelAttribute("album") Album album, Model viewModel) {
@@ -52,7 +74,7 @@ public class HomeController {
 			return "edit.jsp";
 		}
 		this.aService.editAlbum(album);
-		return "redirect:/";
+		return "redirect:/dashboard";
 	}
 	
 	@GetMapping("/details/{id}")
@@ -66,6 +88,6 @@ public class HomeController {
 	public String htmlAdd(@RequestParam("albumName") String album, @RequestParam("bandName") String band, @RequestParam("year") Integer year) {
 	Album albumToSave = new Album(album, band, year);
 	this.aService.createAlbum(albumToSave);
-	return "redirect:/";
+	return "redirect:/dashboard";
 	}
 }
