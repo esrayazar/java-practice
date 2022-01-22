@@ -18,7 +18,7 @@
 <div class="controller">
 <h1>Welcome To Record dot Com</h1>
 <hr>
-<a href="/new">Add an Album</a>  |  <a href="/songs/new">Add an Album</a> 
+<a href="/new">Add an Album</a>  |  <a href="/song/new">Add Song</a> 
 <table class="table table-striped table-dark">
 <thead>
 <tr>
