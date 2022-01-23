@@ -120,6 +120,12 @@ private List<User>likers;
 	public void setYear(Integer year) {
 		this.year = year;
 	}
+	public List<User> getLikers() {
+		return likers;
+	}
+	public void setLikers(List<User> likers) {
+		this.likers = likers;
+	}
 	public Album(String albumName, String bandName, Integer year) {
 		this.albumName = albumName;
 		this.bandName = bandName;
