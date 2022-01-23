@@ -24,6 +24,9 @@
 <form:label path="year">Year</form:label>
 <form:errors path="year"/>
 <form:input type="text" path="year"/>
+<form:label path="yearBought">Year Bought</form:label>
+<form:errors path="yearBought"/>
+<form:input type="date" path="yearBought"/>
 <p><button>Create Album</button>
 </form:form>
 <h3>HTML Forms Way</h3>
@@ -33,7 +36,7 @@
 <p>Band Name: </p>
 <input name="bandName" type ="text">
 <p>Release Year: </p>
-<input name="date" type ="text">
+<input name="year" type ="text">
 <button>Add Album</button>
 </form>
 </div>
