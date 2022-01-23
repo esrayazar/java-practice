@@ -34,6 +34,7 @@ public class HomeController {
 	
 	@PostMapping("/login")
 	public String login(HttpSession session, @RequestParam("usersToLogin") Long userid) {
+		System.out.println("userid: "+userid);
 		session.setAttribute("user__id",userid );
 		return "redirect:/dashboard";
 	}
@@ -42,9 +43,11 @@ public class HomeController {
 	@GetMapping("/dashboard")
 	public String index(Model viewModel,HttpSession session) {
 	if(session.getAttribute("user__id")==null) {
+		System.out.println("---> redirect");
 		return "redirect:/";
 	}
-	viewModel.addAttribute("user", this.uService.getOneUser((Long)session.getAttribute("use__id" )));
+	System.out.println("user -->"+session.getAttribute("user__id"));
+	viewModel.addAttribute("user", this.uService.getOneUser((Long)session.getAttribute("user__id" )));
 	viewModel.addAttribute( "allAlbums", this.aService.getAllAlbums());
 	return "index.jsp";
 	}
