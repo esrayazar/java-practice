@@ -28,9 +28,17 @@ public class HomeController {
 
 	
 	@GetMapping("/")
-	public String landing(Model viewModel) {
-		viewModel.addAttribute("allUsers", this.uService.getAllUSers());
+	public String landing(@ModelAttribute("user") User user) {
 		return "landing.jsp";
+	}
+	@PostMapping("/registerUser")
+	public String register(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session) {
+		if(result.hasErrors()) {
+			return "landing.jsp";
+		}
+		User newUser = this.uService.registerUser(user);
+		session.setAttribute("user__id", user.getId());
+		return "redirect:/dashboard";
 	}
 	
 	@PostMapping("/login")
