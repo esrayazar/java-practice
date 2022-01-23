@@ -1,9 +1,15 @@
 package com.esra.albums.models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,6 +20,15 @@ public class User {
 	private Long id;
 	private String firstName;
 	private String lastName;
+	
+	@ManyToMany(fetch= FetchType.LAZY)
+			@JoinTable(
+				name="likes",
+				joinColumns= @JoinColumn(name="user_id"),
+				inverseJoinColumns = @JoinColumn(name="album_id"))
+	private List<Album> albumsliked;
+	
+	
 	public Long getId() {
 		return id;
 	}
