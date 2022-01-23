@@ -3,6 +3,7 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
     <%@ page isErrorPage="true"%>
+    <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,11 +16,7 @@
 <title>Welcome to Records dot Com</title>
 </head>
 <body>
-<div class="container">
-<h1>Welcome To Record dot Com</h1>
-<h3>Hi ${user.firstName}</h3>
-<hr>
-<a href="/new">Add an Album</a>  |  <a href="/song/new">Add Song</a> 
+<t:wrapper>
 <table class="table table-striped table-dark">
 <thead>
 <tr>
@@ -50,6 +47,6 @@
 </thead>
 </table>
 
-</div >
+</t:wrapper> 
 </body>
 </html>
