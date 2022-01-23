@@ -37,7 +37,7 @@ public class HomeController {
 			return "landing.jsp";
 		}
 		User newUser = this.uService.registerUser(user);
-		session.setAttribute("user__id", user.getId());
+		session.setAttribute("user__id", newUser.getId());
 		return "redirect:/dashboard";
 	}
 	
