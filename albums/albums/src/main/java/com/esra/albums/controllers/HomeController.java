@@ -53,10 +53,11 @@ public class HomeController {
 	return "index.jsp";
 	}
 	
-	@GetMapping("/like/{id")
+	@GetMapping("/like/{id}")
 	public String like(@PathVariable("id") Long id, HttpSession session) {
 		User userToLikeAlbum = this.uService.getOneUser((Long)session.getAttribute("user__id" ));
 		Album albumToLike = this.aService.getOneAlbum(id);
+		this.aService.likeAlbum(userToLikeAlbum, albumToLike);
 		return "redirect:/";
 	}
 	
