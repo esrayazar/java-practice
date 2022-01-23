@@ -17,6 +17,7 @@ import com.esra.albums.models.Album;
 import com.esra.albums.models.User;
 import com.esra.albums.services.AlbumService;
 import com.esra.albums.services.UserService;
+import com.esra.albums.validators.UserValidator;
 
 @Controller
 public class HomeController {
@@ -25,6 +26,8 @@ public class HomeController {
 	private AlbumService aService;
 	@Autowired
 	private UserService uService;
+	@Autowired
+	private UserValidator validator;
 
 	
 	@GetMapping("/")
@@ -33,6 +36,7 @@ public class HomeController {
 	}
 	@PostMapping("/registerUser")
 	public String register(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session) {
+		validator.validate(user,result);
 		if(result.hasErrors()) {
 			return "landing.jsp";
 		}
