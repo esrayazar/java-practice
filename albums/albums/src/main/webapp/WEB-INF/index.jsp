@@ -15,7 +15,7 @@
 <title>Welcome to Records dot Com</title>
 </head>
 <body>
-<div class="controller">
+<div class="container">
 <h1>Welcome To Record dot Com</h1>
 <h3>Hi ${user.firstName}</h3>
 <hr>
@@ -23,26 +23,32 @@
 <table class="table table-striped table-dark">
 <thead>
 <tr>
-<th>Id</th>
+<th>Number Of Likes</th>
 <th>Album Name</th>
 <th>Band Name</th>
 <th>Year</th>
+<th>Action</th>
 </tr>
 <c:forEach items= "${allAlbums}" var="album">
 <tr>
-<td>${album.id} </td>
+<td>${album.likers.size()} </td>
 <td><a href="/details/${album.id}">${album.albumName} </a></td>
 <td>${album.bandName} </td>
 <td>${album.year} </td>
+<td>
+<c:choose>
+<c:when test="${album.likers.contains(user)}">
+<a href="/unlike/${album.id}">Unlike</a>
+</c:when>
+<c:otherwise>
+<a href="/like/${album.id}">Like</a>
+</c:otherwise>
+</c:choose> 
+
 </tr>
 </c:forEach>
 </thead>
 </table>
-
-
-
-
-
 
 </div >
 </body>
