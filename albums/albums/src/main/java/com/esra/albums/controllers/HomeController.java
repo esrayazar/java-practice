@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.esra.albums.models.Album;
 import com.esra.albums.models.User;
@@ -46,9 +47,13 @@ public class HomeController {
 	}
 	
 	@PostMapping("/login")
-	public String login(HttpSession session, @RequestParam("usersToLogin") Long userid) {
-		System.out.println("userid: "+userid);
-		session.setAttribute("user__id",userid );
+	public String login(HttpSession session, @RequestParam("lemail") String email, @RequestParam("lpassword") String password, RedirectAttributes redirectAttr) {
+		if(!this.uService.authenticateUser(email, password)) {
+			redirectAttr.addFlashAttribute("loginError", "Invalid Credentials");
+			return "redirect:/";
+		}
+		User userToBeLoggedIn= this.uService.getUserByEmail(email);
+		session.setAttribute("user__id",userToBeLoggedIn.getId());
 		return "redirect:/dashboard";
 	}
 	
