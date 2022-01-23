@@ -33,7 +33,7 @@
 <p>Band Name: </p>
 <input name="bandName" type ="text">
 <p>Release Year: </p>
-<input name="year" type ="text">
+<input name="date" type ="text">
 <button>Add Album</button>
 </form>
 </div>

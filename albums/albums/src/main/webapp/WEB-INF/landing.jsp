@@ -49,6 +49,17 @@
 	</div>
 	<input class="btn btn-primary" type="submit" value="Submit"/>
 	</form:form>
+	<div class="column">
+	<h3>Login</h3>
+	<p>${loginError} </p>
+	<form action="/login" method="post">
+	<label>Email Address</label>
+	<input type="email" name="lemail">
+	<label>Password</label>
+	<input type="password" name="lpassword">
+	<button>Login</button>
+	</form>
+	</div>
 
 
 
