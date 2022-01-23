@@ -11,5 +11,7 @@ import com.esra.albums.models.User;
 public interface UserRepository extends CrudRepository<User, Long>{
 	List <User> findAll();
 	
+	boolean existsByEmail(String email);
+	
 
 }

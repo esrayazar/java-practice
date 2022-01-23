@@ -21,6 +21,12 @@ public class UserValidator {
 		if(!user.getPassword().equals(user.getConfirmPassword())) {
 			errors.rejectValue("password", "Match", "Password do not match!!!!!!!!");
 		}
+		if (this.uRepo.existsByEmail(user.getEmail())) {
+			errors.rejectValue("email", "Unique", "Email has already taken");
+		}
+		if (user.getFirstName().equals("Esra")) {
+			errors.rejectValue("firstName", "noMattAllowed", "Esra s  are unable to register at this time");
+		}
 		
 	}
 
