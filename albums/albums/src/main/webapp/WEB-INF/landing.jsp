@@ -16,13 +16,44 @@
 <title>Login</title>
 </head>
 <body>
-<form method="POST" action="/login">
-<select name="usersToLogin">
-<c:forEach items="${allUsers}" var="user">
-<option value="${user.id}">${user.firstName} ${user.lastName}</option>
-</c:forEach>
-</select>
-<button>Login</button>
-</form>
+<div class="container">
+<h1>Welcome to Albums dot com</h1>
+<div class="row">
+<div class="column">
+<h3>Register</h3>
+	<form:form action="/" method="post" modelAttribute="user">
+	<div class="form-group">
+		<form:label path="firstName">First Name</form:label>
+		<form:errors path="firstName"/>
+		<form:input class="form-control" path="firstName"/>
+	</div>
+	<div class="form-group">
+		<form:label path="lastName">Last Name</form:label>
+		<form:errors path="lastName"/>
+		<form:input class="form-control" path="lastName"/>
+	</div>
+	<div class="form-group">
+		<form:label path="email">Email</form:label>
+		<form:errors path="email"/>
+		<form:input type="email" class="form-control" path="email"/>
+	</div>
+	<div class="form-group">
+		<form:label path="password">Password</form:label>
+		<form:errors path="password"/>
+		<form:input type="password" class="form-control" path="password"/>
+	</div>
+	<div class="form-group">
+		<form:label path="confirmPassword">Confirm Password</form:label>
+		<form:errors path="confirmPassword"/>
+		<form:input type="confirmPassword" class="form-control" path="confirmPassword"/>
+	</div>
+	<input class="btn btn-primary" type="submit" value="Submit"/>
+	</form:form>
+
+
+
+</div>
+</div>
+</div>
 </body>
 </html>
