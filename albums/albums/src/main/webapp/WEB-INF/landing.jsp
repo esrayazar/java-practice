@@ -21,7 +21,7 @@
 <div class="row">
 <div class="column">
 <h3>Register</h3>
-	<form:form action="/" method="post" modelAttribute="user">
+	<form:form action="/registerUser" method="post" modelAttribute="user">
 	<div class="form-group">
 		<form:label path="firstName">First Name</form:label>
 		<form:errors path="firstName"/>
