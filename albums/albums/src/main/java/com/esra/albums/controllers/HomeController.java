@@ -58,8 +58,10 @@ public class HomeController {
 		User userToLikeAlbum = this.uService.getOneUser((Long)session.getAttribute("user__id" ));
 		Album albumToLike = this.aService.getOneAlbum(id);
 		this.aService.likeAlbum(userToLikeAlbum, albumToLike);
-		return "redirect:/";
+		return "redirect:/dashboard";
 	}
+	
+	
 	
 	@GetMapping("/new")
 	public String add(@ModelAttribute("album") Album album) {

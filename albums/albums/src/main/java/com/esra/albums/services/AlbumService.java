@@ -51,8 +51,14 @@ public class AlbumService {
 		List<User> usersWhoLiked = album.getLikers();
 		usersWhoLiked.add(user);
 		this.aRepo.save(album);
-		
 	}
+	
+	//UnLike an Album 
+		public void unLikeAlbum(User user, Album album) {
+			List<User> usersWhoLiked = album.getLikers();
+			usersWhoLiked.remove(user);
+			this.aRepo.save(album);
+		}
 	
 				
 				
