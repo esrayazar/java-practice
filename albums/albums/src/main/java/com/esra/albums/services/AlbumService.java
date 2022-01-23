@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.esra.albums.models.Album;
+import com.esra.albums.models.User;
 import com.esra.albums.repositories.AlbumRepository;
 
 @Service
@@ -45,7 +46,13 @@ public class AlbumService {
 		this.aRepo.deleteById(id);
 		return "Album has been deleted";
 	}
-	
+	//Like an Album 
+	public void likeAlbum(User user, Album album) {
+		List<User> usersWhoLiked = album.getLikers();
+		usersWhoLiked.add(user);
+		this.aRepo.save(album);
+		
+	}
 	
 				
 				

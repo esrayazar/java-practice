@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.esra.albums.models.Album;
+import com.esra.albums.models.User;
 import com.esra.albums.services.AlbumService;
 import com.esra.albums.services.UserService;
 
@@ -51,7 +52,13 @@ public class HomeController {
 	viewModel.addAttribute( "allAlbums", this.aService.getAllAlbums());
 	return "index.jsp";
 	}
-
+	
+	@GetMapping("/like/{id")
+	public String like(@PathVariable("id") Long id, HttpSession session) {
+		User userToLikeAlbum = this.uService.getOneUser((Long)session.getAttribute("user__id" ));
+		Album albumToLike = this.aService.getOneAlbum(id);
+		return "redirect:/";
+	}
 	
 	@GetMapping("/new")
 	public String add(@ModelAttribute("album") Album album) {

@@ -50,6 +50,12 @@ public class User {
 	public User() {
 		super();
 	}
+	public List<Album> getAlbumsliked() {
+		return albumsliked;
+	}
+	public void setAlbumsliked(List<Album> albumsliked) {
+		this.albumsliked = albumsliked;
+	}
 	
 	
 
