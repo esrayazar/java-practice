@@ -60,7 +60,13 @@ public class HomeController {
 		this.aService.likeAlbum(userToLikeAlbum, albumToLike);
 		return "redirect:/dashboard";
 	}
-	
+	@GetMapping("/unlike/{id}")
+	public String unLike(@PathVariable("id") Long id, HttpSession session) {
+		User userToLikeAlbum = this.uService.getOneUser((Long)session.getAttribute("user__id" ));
+		Album albumTounlike = this.aService.getOneAlbum(id);
+		this.aService.unLikeAlbum(userToLikeAlbum, albumTounlike);
+		return "redirect:/dashboard";
+	}
 	
 	
 	@GetMapping("/new")
