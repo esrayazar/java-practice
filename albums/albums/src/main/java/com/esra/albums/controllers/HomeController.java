@@ -1,5 +1,7 @@
 package com.esra.albums.controllers;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -121,7 +123,7 @@ public class HomeController {
 	}
 	
 	@PostMapping("/htmladd")
-	public String htmlAdd(@RequestParam("albumName") String album, @RequestParam("bandName") String band, @RequestParam("year") Integer year) {
+	public String htmlAdd(@RequestParam("albumName") String album, @RequestParam("bandName") String band, @RequestParam("year") Date year) {
 	Album albumToSave = new Album(album, band, year);
 	this.aService.createAlbum(albumToSave);
 	return "redirect:/dashboard";

@@ -36,9 +36,7 @@ public class Album {
 	private String albumName;
 	@NotBlank
 	private String bandName;
-	@NotNull
-	@Min(1700)
-	private Integer year;
+	private Date year;
 	@Column(updatable =false)
 	@DateTimeFormat(pattern ="yyy-MM-DD HH:mm:ss")
 	private Date createdAt;
@@ -64,9 +62,6 @@ private List<User>likers;
 	protected void onUpdate() {
 		this.updatedAt = new Date();
 	}
-	
-	
-	
 	public Date getCreatedAt() {
 		return createdAt;
 	}
@@ -113,11 +108,10 @@ private List<User>likers;
 		this.bandName = bandName;
 	}
 
-	public Integer getYear() {
+	public Date getYear() {
 		return year;
 	}
-
-	public void setYear(Integer year) {
+	public void setYear(Date year) {
 		this.year = year;
 	}
 	public List<User> getLikers() {
@@ -126,7 +120,10 @@ private List<User>likers;
 	public void setLikers(List<User> likers) {
 		this.likers = likers;
 	}
-	public Album(String albumName, String bandName, Integer year) {
+	public Album(
+			@Size(min = 1, max = 200, message = "Hey, why are you putting in invalid lenghts for the album?") String albumName,
+			@NotBlank String bandName, Date year) {
+		super();
 		this.albumName = albumName;
 		this.bandName = bandName;
 		this.year = year;
