@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -36,7 +37,12 @@ public class Album {
 	private String albumName;
 	@NotBlank
 	private String bandName;
-	private Date year;
+	@NotNull
+	@Min(1700)
+	private Integer year;
+	@Past //or @Future
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date yearBought;
 	@Column(updatable =false)
 	@DateTimeFormat(pattern ="yyy-MM-DD HH:mm:ss")
 	private Date createdAt;
@@ -108,11 +114,18 @@ private List<User>likers;
 		this.bandName = bandName;
 	}
 
-	public Date getYear() {
+	public Integer getYear() {
 		return year;
 	}
-	public void setYear(Date year) {
+
+	public void setYear(Integer year) {
 		this.year = year;
+	}
+	public Date getYearBought() {
+		return yearBought;
+	}
+	public void setYearBought(Date yearBought) {
+		this.yearBought = yearBought;
 	}
 	public List<User> getLikers() {
 		return likers;
@@ -120,10 +133,7 @@ private List<User>likers;
 	public void setLikers(List<User> likers) {
 		this.likers = likers;
 	}
-	public Album(
-			@Size(min = 1, max = 200, message = "Hey, why are you putting in invalid lenghts for the album?") String albumName,
-			@NotBlank String bandName, Date year) {
-		super();
+	public Album(String albumName, String bandName, Integer year) {
 		this.albumName = albumName;
 		this.bandName = bandName;
 		this.year = year;
