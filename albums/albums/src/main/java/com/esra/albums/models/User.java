@@ -2,6 +2,7 @@ package com.esra.albums.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
@@ -34,8 +36,8 @@ public class User {
 	private String password;
 	@Transient
 	private String confirmPassword; 
-	
-	
+	@OneToMany(mappedBy="owner",cascade=CascadeType.ALL,fetch= FetchType.LAZY )
+	private List<Album> myAlbums;
 	
 	@ManyToMany(fetch= FetchType.LAZY)
 			@JoinTable(
@@ -89,6 +91,12 @@ public class User {
 	}
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
+	}
+	public List<Album> getMyAlbums() {
+		return myAlbums;
+	}
+	public void setMyAlbums(List<Album> myAlbums) {
+		this.myAlbums = myAlbums;
 	}
 	
 	

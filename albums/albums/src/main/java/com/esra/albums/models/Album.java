@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -24,6 +25,8 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+
 
 @Entity
 @Table(name="albums")
@@ -57,8 +60,12 @@ public class Album {
 		name="likes",
 		joinColumns= @JoinColumn(name="album_id"),
 		inverseJoinColumns = @JoinColumn(name="user_id"))
-private List<User>likers;
-
+	private List<User>likers;
+	
+	@ManyToOne(fetch= FetchType.LAZY)
+	@JoinColumn(name="user_id")
+	private User owner;
+	
 	
 	@PrePersist
 	protected void onCreate() {
@@ -137,6 +144,12 @@ private List<User>likers;
 		this.albumName = albumName;
 		this.bandName = bandName;
 		this.year = year;
+	}
+	public User getOwner() {
+		return owner;
+	}
+	public void setOwner(User owner) {
+		this.owner = owner;
 	}
 	
 	

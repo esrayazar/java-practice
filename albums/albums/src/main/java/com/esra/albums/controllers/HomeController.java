@@ -87,17 +87,27 @@ public class HomeController {
 	
 	
 	@GetMapping("/new")
-	public String add(@ModelAttribute("album") Album album) {
+	public String add(@ModelAttribute("album") Album album,HttpSession session, Model viewModel) {
+		viewModel.addAttribute("userID",(Long)session.getAttribute("user__id"));
 		return "add.jsp";
 	}
 	@PostMapping("/new")
-	public String addRecord(@Valid @ModelAttribute("album") Album album, BindingResult result) {
+	public String addRecord(@Valid @ModelAttribute("album") Album album, BindingResult result, HttpSession session) {
+		User user = this.uService.getOneUser((Long)session.getAttribute("user__id"));
+		album.setOwner(user);
 		if(result.hasErrors()) {
 			return "add.jsp";
 		}
 		this.aService.createAlbum(album);
 		return "redirect:/dashboard";
 	}
+	@GetMapping("delete/{id}")
+	public String delete(@PathVariable("id") Long id) {
+		this.aService.deletealbum(id);
+		return "redirect:/dashboard";
+	}
+	
+	
 	@GetMapping("/edit/{id}")
 	public String editRecord(@PathVariable("id") Long id, @ModelAttribute("album") Album album, Model viewModel) {
 		viewModel.addAttribute("album",this.aService.getOneAlbum(id));
@@ -114,7 +124,8 @@ public class HomeController {
 	}
 	
 	@GetMapping("/details/{id}")
-	public String show(@PathVariable("id") Long id, Model viewModel) {
+	public String show(@PathVariable("id") Long id, Model viewModel,HttpSession session) {
+	viewModel.addAttribute("loggedInUser", (Long) session.getAttribute("user__id"));
 	viewModel.addAttribute("albumDetails", this.aService.getOneAlbum(id));
 	return "show.jsp";
 	
@@ -126,4 +137,11 @@ public class HomeController {
 	this.aService.createAlbum(albumToSave);
 	return "redirect:/dashboard";
 	}
+	
+	@GetMapping("/profile/{id}")
+	public String userProfile(@PathVariable("id") Long id, Model viewModel) {
+		viewModel.addAttribute("user",this.uService.getOneUser(id));
+		return "profile.jsp";
+	}
+	
 }

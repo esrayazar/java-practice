@@ -16,7 +16,7 @@ import com.esra.albums.services.AlbumService;
 import com.esra.albums.services.SongService;
 
 @Controller
-@RequestMapping("/song")
+@RequestMapping("/songs")
 public class SongController {
 	@Autowired
 	private SongService sService;
