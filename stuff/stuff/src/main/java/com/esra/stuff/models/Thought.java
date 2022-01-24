@@ -67,6 +67,10 @@ public class Thought {
 
 	public void setLikers(List<User> likers) {
 		this.likers = likers;
+	}
+
+	public Thought() {
+		super();
 	}	
 	
 	

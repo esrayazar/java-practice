@@ -90,8 +90,19 @@ public class User {
 	}
 	public User() {
 		super();
-	} 
-	
+	}
+	public List<Thought> getThoughts() {
+		return thoughts;
+	}
+	public void setThoughts(List<Thought> thoughts) {
+		this.thoughts = thoughts;
+	}
+	public List<Thought> getLikedThoughts() {
+		return likedThoughts;
+	}
+	public void setLikedThoughts(List<Thought> likedThoughts) {
+		this.likedThoughts = likedThoughts;
+	}
 	
 	
 
