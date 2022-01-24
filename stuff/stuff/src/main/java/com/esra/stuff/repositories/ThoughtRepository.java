@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.esra.stuff.models.Thought;
 
 @Repository
-public interface ThoughtsRepository extends CrudRepository<Thought, Long>{
+public interface ThoughtRepository extends CrudRepository<Thought, Long>{
 	List <Thought> findAll();
 
 }
