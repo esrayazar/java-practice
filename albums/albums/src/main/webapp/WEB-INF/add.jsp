@@ -15,18 +15,27 @@
 <hr>
 <h3>Spring MVC Forms</h3>
 <form:form method="POST" action="/new" modelAttribute="album">
+<div class="nav-links">
 <form:label path="albumName">Album Name</form:label>
 <form:errors path="albumName"/>
 <form:input type="text" path="albumName"/>
+</div>
+<div class="nav-links">
 <form:label path="bandName">Band Name</form:label>
 <form:errors path="bandName"/>
 <form:input type="text" path="bandName"/>
+</div>
+<div class="nav-links">
 <form:label path="year">Year</form:label>
 <form:errors path="year"/>
 <form:input type="text" path="year"/>
+</div>
+<div class="nav-links">
 <form:label path="yearBought">Year Bought</form:label>
 <form:errors path="yearBought"/>
 <form:input type="date" path="yearBought"/>
+</div>
+<%-- <form:input type="hidden" value="${userID}" path="owner"/> --%>
 <p><button>Create Album</button>
 </form:form>
 <h3>HTML Forms Way</h3>

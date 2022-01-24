@@ -17,7 +17,8 @@
 </head>
 <body>
 <t:wrapper>
-<table class="table table-striped table-dark">
+<h3>Welcome ${user.firstName} ${user.lastName}</h3>
+<table class="table table-striped border border-dark">
 <thead>
 <tr>
 <th>Number Of Likes</th>
