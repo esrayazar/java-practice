@@ -25,6 +25,7 @@ public class User {
 	@Email
 	@NotBlank
 	private String email;
+	@NotBlank
 	private String password;
 	@Transient
 	private String confirmPassword;
@@ -63,7 +64,11 @@ public class User {
 	}
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
+	}
+	public User() {
+		super();
 	} 
+	
 	
 	
 
