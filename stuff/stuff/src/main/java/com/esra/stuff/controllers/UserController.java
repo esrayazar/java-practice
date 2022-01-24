@@ -5,6 +5,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,21 +27,21 @@ public class UserController {
 	
 	@GetMapping("/")
 	public String login(@ModelAttribute("user") User user) {
-		return "landing.jsp";
+		return "index.jsp";
 	}
 	
 	@PostMapping("/register")
 	public String register(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session) {
 		validator.validate(user,result);
 		if(result.hasErrors()) {
-			return "landing.jsp";
+			return "index.jsp";
 		}
 		User newUser = this.userService.registerUser(user);
 		session.setAttribute("user__id", newUser.getId());
-		return "redirect:/thought/dashboard";
+		return "redirect:/dashboard";
 	}
 	@PostMapping("/login")
-	public String login(HttpSession session, @RequestParam("lemail") String email, @RequestParam("lpassword") String password, RedirectAttributes redirectAttr) {
+	public String login(HttpSession session, @RequestParam("loginEmail") String email, @RequestParam("loginPassword") String password, RedirectAttributes redirectAttr) {
 		if(!this.userService.authenticateUser(email, password)) {
 			redirectAttr.addFlashAttribute("loginError", "Invalid Credentials");
 			return "redirect:/";
@@ -55,6 +56,18 @@ public class UserController {
 		session.invalidate();
 		return "redirect:/";
 	}
+//	@GetMapping("/dashboard")
+//	public String index(Model viewModel,HttpSession session) {
+//	if(session.getAttribute("user__id")==null) {
+//		System.out.println("---> redirect");
+//		return "redirect:/";
+//	}
+//	System.out.println("user -->"+session.getAttribute("user__id"));
+//	viewModel.addAttribute("user", this.userService.getOneUser((Long)session.getAttribute("user__id" )));
+//	return "index.jsp";
+//	}
+//	
 	
+
 
 }
