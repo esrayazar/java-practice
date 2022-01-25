@@ -58,6 +58,10 @@ public class HomeController {
 		this.thoughtService.unlikeThought(user, thought);
 		return "redirect:/thoughts/dashboard";
 	}
-	@GetMapping()
+	@GetMapping("/{id}/delete")
+	public String delete(@PathVariable("id") Long id) {
+		this.thoughtService.deleteThought(id);
+		return "redirect:/thoughts/dashboard";
+	}
 
 }
