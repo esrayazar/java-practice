@@ -5,7 +5,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -38,7 +37,7 @@ public class UserController {
 		}
 		User newUser = this.userService.registerUser(user);
 		session.setAttribute("user__id", newUser.getId());
-		return "redirect:/dashboard";
+		return "redirect:/thoughts/dashboard";
 	}
 	@PostMapping("/login")
 	public String login(HttpSession session, @RequestParam("loginEmail") String email, @RequestParam("loginPassword") String password, RedirectAttributes redirectAttr) {
@@ -48,7 +47,7 @@ public class UserController {
 		}
 		User userToBeLoggedIn= this.userService.getUserByEmail(email);
 		session.setAttribute("user__id",userToBeLoggedIn.getId());
-		return "redirect:/dashboard";
+		return "redirect:/thoughts/dashboard";
 	}
 	
 	@GetMapping("/logout")

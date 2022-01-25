@@ -20,7 +20,7 @@ public class ThoughtService {
 	
 	//find all
 	
-	public List<Thought> allthought(){
+	public List<Thought> allthoughts(){
 		return this.ThoughtRepository.findAll();
 	}
 	
