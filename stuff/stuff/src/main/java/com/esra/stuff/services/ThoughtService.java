@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.esra.stuff.models.Thought;
+import com.esra.stuff.models.User;
 import com.esra.stuff.repositories.ThoughtRepository;
 
 @Service
@@ -20,7 +21,7 @@ public class ThoughtService {
 	
 	//find all
 	
-	public List<Thought> allthoughts(){
+	public List<Thought> allThoughts(){
 		return this.ThoughtRepository.findAll();
 	}
 	
@@ -32,6 +33,13 @@ public class ThoughtService {
 	//Delete
 	public void deleteThought(Long id ) {
 		this.ThoughtRepository.deleteById(id);
+	}
+	
+	//Like
+	public void likeThought(User user, Thought thought) {
+		List<User> usersWhoLiked = thought.getLikers();
+		usersWhoLiked.add(user);
+		this.ThoughtRepository.save(thought);
 	}
 	
 }
