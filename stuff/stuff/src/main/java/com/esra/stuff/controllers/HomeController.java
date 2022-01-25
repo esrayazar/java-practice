@@ -50,8 +50,13 @@ public class HomeController {
 		Thought thought = this.thoughtService.getOneThought(id);
 		this.thoughtService.likeThought(user, thought);
 		return "redirect:/throughts/dashboard";
-		
-		
+	}
+	@GetMapping("/{id}/unlike")
+	public String unlike(HttpSession session, @PathVariable("id") Long id) {
+		User user = this.userService.findOneUser((Long) session.getAttribute("user__id"));
+		Thought thought = this.thoughtService.getOneThought(id);
+		this.thoughtService.unlikeThought(user, thought);
+		return "redirect:/throughts/dashboard";
 	}
 
 }

@@ -42,4 +42,10 @@ public class ThoughtService {
 		this.ThoughtRepository.save(thought);
 	}
 	
+	//Unlike
+	public void unlikeThought(User user, Thought thought) {
+		List<User> usersWhoLiked = thought.getLikers();
+		usersWhoLiked.remove(user);
+		this.ThoughtRepository.save(thought);
+	}
 }
