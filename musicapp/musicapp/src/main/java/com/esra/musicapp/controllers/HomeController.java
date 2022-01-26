@@ -102,8 +102,8 @@ public class HomeController {
 	@GetMapping("/{id}/unlike")
 	public String unlike(HttpSession session, @PathVariable("id") Long id) {
 		User user = this.userService.findOneUser((Long) session.getAttribute("user__id"));
-		Thought thought = this.thoughtService.getOneThought(id);
-		this.thoughtService.unlikeThought(user, thought);
+		Album thought = this.albumService.getOneAlbum(id);
+		this.albumService.unlikeThought(user, thought);
 		return "redirect:/thoughts/dashboard";
 	}
 //	
