@@ -2,6 +2,8 @@ package com.esra.musicapp.controllers;
 
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -29,17 +31,30 @@ public class HomeController {
 	@Autowired
 	private AlbumService albumService;
 	
+//	@GetMapping("/dashboard")
+//	public String albums(Model model, HttpSession session, @ModelAttribute("album") Album album) {
+//		User user = this.userService.findOneUser((Long) session.getAttribute("user__id"));
+//		model.addAttribute("user", user);
+//		model.addAttribute("allAlbums", this.albumService.allAlbums());
+//		return "dashboard.jsp";
+//	}
 	@GetMapping("/dashboard")
-	public String albums(Model model, HttpSession session, @ModelAttribute("album") Album album) {
-		User user = this.userService.findOneUser((Long) session.getAttribute("user__id"));
-		model.addAttribute("user", user);
-		model.addAttribute("allAlbums", this.albumService.allAlbums());
-		return "dashboard.jsp";
+	public String albums (Model model, HttpSession session) {
+		if(session.getAttribute("user__id") != null) {
+			List<Album> albums = this.albumService.allAlbums();
+			User user =userService.findOneUser((Long) session.getAttribute("user__id"));
+			model.addAttribute("albums", albums);
+			model.addAttribute("user", user);
+			return "dashboard.jsp";
 	}
+	return "redirect:/";
+	}
+	
 	
 	//create album
 	@GetMapping("/new")
 	public String dashboard(HttpSession session, Model viewModel, @ModelAttribute("album") Album album) {
+		if(session.getAttribute("user__id")==null) return "redirect:/";
 		User user = this.userService.findOneUser((Long) session.getAttribute("user__id"));
 		viewModel.addAttribute("user", user);
 		viewModel.addAttribute("allalbums", this.albumService.allAlbums());
@@ -54,8 +69,8 @@ public class HomeController {
 			return "new.jsp";
 		}
 		album.setUser(user);
-		 this.albumService.create(album);
-		 return "redirect:/albums/dashboard";
+		this.albumService.create(album);
+		return "redirect:/albums/dashboard";
 	}
 //	//Get one album details 
 //	@GetMapping("/albums/project/{id}")
