@@ -19,7 +19,7 @@
 <div class="container">
 <h1>Create a New Album</h1>
 <p>
-	<a href="/albums"> Album Dashboard</a>
+	<a href="/dashboard"> Album Dashboard</a>
 	<a href="/logout">Logout</a>
 
 <form:form action="/dashboard/creaate" method="post" modelAttribute="album">
