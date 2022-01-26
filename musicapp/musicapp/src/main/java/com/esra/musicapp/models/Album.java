@@ -1,6 +1,8 @@
 package com.esra.musicapp.models;
 
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -8,9 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
@@ -28,6 +33,11 @@ public class Album {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="user_id")
 	private User user;
+	
+	@OneToMany(mappedBy="showRated", fetch=FetchType.LAZY)
+	@JsonIgnore
+	
+	private List<Rating> ratings;
 
 	public Long getId() {
 		return id;
@@ -60,8 +70,15 @@ public class Album {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
 
+	public List<Rating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
+	}
+	
 	
 	
 
