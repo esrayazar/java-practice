@@ -26,4 +26,38 @@ public class Rating {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="album_id")
 	private User showRated;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public int getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+
+	public User getRatedBy() {
+		return ratedBy;
+	}
+
+	public void setRatedBy(User ratedBy) {
+		this.ratedBy = ratedBy;
+	}
+
+	public User getShowRated() {
+		return showRated;
+	}
+
+	public void setShowRated(User showRated) {
+		this.showRated = showRated;
+	}
+	
+	
 }
