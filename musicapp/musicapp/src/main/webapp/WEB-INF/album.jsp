@@ -4,8 +4,20 @@
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
     <%@ page isErrorPage="true"%>
     <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
-<body>
+
 <t:partial>
+<h5>
+	Album Name:
+	<c:out value="${album.albumName }" />
+</h5>
+<p>
+	Creator:
+	<c:out value="${album.user.firstName }" />
+</p>
+<p>
+	Description:
+	<c:out value="${album.description}" />
+
     
 
 </t:partial>

@@ -18,16 +18,15 @@
       <tbody>
         <c:forEach items="${albums}" var="album">
           <tr>
-            <td>
-              <a href="/albums/addalbum/${album.id}">
-                <c:out value="${album.albumName}"
-              /></a>
+            <td><a href="/albums/addalbum/${album.id}">
+            <c:out value="${album.albumName}"/> </a>
             </td>
             <td>
-              <c:out value="${album.User.firstName}" />,
+              <c:out value="${album.user.firstName}" />
             <%--   <c:out value="${album.User.lastName}" /> --%>
             </td>
             <td>Rating</td>
+          
           </tr>
         </c:forEach>
       </tbody>

@@ -19,10 +19,10 @@
 <div class="container">
 <h1>Create a New Album</h1>
 <p>
-	<a href="/dashboard"> Album Dashboard</a>
+	<a href="/albums/dashboard"> Album Dashboard</a>
 	<a href="/logout">Logout</a>
 
-<form:form action="/dashboard/creaate" method="post" modelAttribute="album">
+<form:form action="/albums/dashboard/create" method="post" modelAttribute="album">
 	<div class="form-group">
 		<form:label path="albumName">Album Name</form:label>
 		<form:errors  class="text-danger" path="albumName"/>
