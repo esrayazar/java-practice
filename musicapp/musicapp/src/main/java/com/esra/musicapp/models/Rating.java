@@ -25,7 +25,7 @@ public class Rating {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="album_id")
-	private User showRated;
+	private User albumRated;
 
 	public Long getId() {
 		return id;
@@ -51,13 +51,14 @@ public class Rating {
 		this.ratedBy = ratedBy;
 	}
 
-	public User getShowRated() {
-		return showRated;
+	public User getAlbumRated() {
+		return albumRated;
 	}
 
-	public void setShowRated(User showRated) {
-		this.showRated = showRated;
+	public void setAlbumRated(User albumRated) {
+		this.albumRated = albumRated;
 	}
 	
 	
+
 }

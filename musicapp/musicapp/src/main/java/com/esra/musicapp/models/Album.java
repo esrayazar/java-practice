@@ -34,7 +34,7 @@ public class Album {
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	@OneToMany(mappedBy="showRated", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="albumRated", fetch=FetchType.LAZY)
 	@JsonIgnore
 	
 	private List<Rating> ratings;
