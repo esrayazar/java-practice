@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -39,12 +38,12 @@ public class HomeController {
 	}
 	
 	//create album
-	@GetMapping("/dashboard/new")
+	@GetMapping("/new")
 	public String dashboard(HttpSession session, Model viewModel, @ModelAttribute("album") Album album) {
 		User user = this.userService.findOneUser((Long) session.getAttribute("user__id"));
 		viewModel.addAttribute("user", user);
 		viewModel.addAttribute("allalbums", this.albumService.allAlbums());
-		return "dashboard.jsp";
+		return "new.jsp";
 	}
 	@PostMapping("/dashboard/create")
 	public String addAlbum(@Valid @ModelAttribute("album") Album album, BindingResult result, HttpSession session, Model viewModel) {
