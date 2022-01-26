@@ -37,7 +37,7 @@ public class UserController {
 		}
 		User newUser = this.userService.registerUser(user);
 		session.setAttribute("user__id", newUser.getId());
-		return "redirect:/thoughts/dashboard";
+		return "redirect:/albums/dashboard";
 	}
 	@PostMapping("/login")
 	public String login(HttpSession session, @RequestParam("loginEmail") String email, @RequestParam("loginPassword") String password, RedirectAttributes redirectAttr) {
@@ -47,7 +47,7 @@ public class UserController {
 		}
 		User userToBeLoggedIn= this.userService.getUserByEmail(email);
 		session.setAttribute("user__id",userToBeLoggedIn.getId());
-		return "redirect:/thoughts/dashboard";
+		return "redirect:/albums/dashboard";
 	}
 	
 	@GetMapping("/logout")

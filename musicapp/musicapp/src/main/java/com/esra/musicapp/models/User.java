@@ -19,7 +19,7 @@ public class User {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
 	@NotBlank
-	@Size(max=15)
+	@Size(min=3 ,max=15, message="please type your name min 3 character")
 	private String firstName;
 	@NotBlank
 	@Size(max=30)
