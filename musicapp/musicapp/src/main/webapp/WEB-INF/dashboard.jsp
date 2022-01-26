@@ -18,7 +18,7 @@
       <tbody>
         <c:forEach items="${albums}" var="album">
           <tr>
-            <td><a href="/albums/addalbum/${album.id}">
+            <td><a href="/albums/album/${album.id}">
             <c:out value="${album.albumName}"/> </a>
             </td>
             <td>
