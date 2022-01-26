@@ -17,7 +17,7 @@
         <c:forEach items="${albums}" var="album">
           <tr>
             <td>
-              <a href="/albums/album/${album.id}">
+              <a href="/albums/addalbum/${album.id}">
                 <c:out value="${album.albumName}"
               /></a>
             </td>

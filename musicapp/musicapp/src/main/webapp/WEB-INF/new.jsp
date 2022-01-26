@@ -22,7 +22,7 @@
 	<a href="/albums"> Album Dashboard</a>
 	<a href="/logout">Logout</a>
 
-<form:form action="/albums/create" method="post" modelAttribute="album">
+<form:form action="/dashboard/creaate" method="post" modelAttribute="album">
 	<div class="form-group">
 		<form:label path="albumName">Album Name</form:label>
 		<form:errors  class="text-danger" path="albumName"/>

@@ -4,41 +4,33 @@
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
     <%@ page isErrorPage="true"%>
     <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
 <body>
-<h2>Hi ${user.firstName} ${user.lastName} </h2>
-<hr>
-<form:form method="POST" action="/albums/addalbums" modelAttribute="album">
-<form:errors path="description"/>
-<form:textarea path="description" placeholder="Post a Great album Here!"/>
-<button>Add Album</button>
-</form:form>
-<hr>
-<c:forEach items="${allalbums}" var="album">
-<%-- <p>
-<c:choose>
-<c:when test="${album.likers.contains(user)}">
-<a href="/albums/${album.id}/unlike ">Unlike </a>
+<t:partial>
 
-</c:when>
-<c:otherwise>
-<a href="/albums/${album.id}/like ">Like </a>
-</c:otherwise>
-</c:choose>
-
-</p> --%>
-<p>${album.user.firstName} says: ${album.description}</p>
-<p><a href="/${album.id}">Details</a> | ${album.likers.size()}
-<p><c:if test="${album.user.id==user.id}">
-<a href="/${album.id}/delete">Delete</a>
-</c:if>
-</c:forEach>
-
-
-</body>
-</html>
+ <table class="table table-dark">
+      <thead>
+        <tr>
+          <th>Album name</th>
+          <th>Created By</th>
+          <th>Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <c:forEach items="${albums}" var="album">
+          <tr>
+            <td>
+              <a href="/albums/addalbum/${album.id}">
+                <c:out value="${album.albumName}"
+              /></a>
+            </td>
+            <td>
+              <c:out value="${album.User.firstName}" />,
+            <%--   <c:out value="${album.User.lastName}" /> --%>
+            </td>
+            <td>Rating</td>
+          </tr>
+        </c:forEach>
+      </tbody>
+    </table>
+    </t:partial>
+   </body>
