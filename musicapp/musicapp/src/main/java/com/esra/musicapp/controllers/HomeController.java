@@ -72,7 +72,7 @@ public class HomeController {
 	public String project(@PathVariable("id")Long albumId, Model model,HttpSession session) {
 		Album album = albumService.getOneAlbum(albumId);
 		model.addAttribute("album", album);
-		model.addAttribute("userLoggedIn", (Long)session.getAttribute("userId"));
+		model.addAttribute("userLoggedIn", (Long)session.getAttribute("user__id"));
 	    return "album.jsp";
 		
 	}
