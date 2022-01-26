@@ -24,7 +24,7 @@ public class UserValidator {
 		if (this.uRepo.existsByEmail(user.getEmail())) {
 			errors.rejectValue("email", "Unique", "Email has already taken");
 		}
-		if (user.getFirstName().equals("Reena")) {
+		if (user.getFirstName().equals("reena")) {
 			errors.rejectValue("firstName", "noMattAllowed", "Reena s  are unable to register at this time :)");
 		}
 		

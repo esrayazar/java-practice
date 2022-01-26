@@ -1,5 +1,7 @@
 package com.esra.musicapp.controllers;
 
+
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -9,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,6 +18,7 @@ import com.esra.musicapp.models.Album;
 import com.esra.musicapp.models.User;
 import com.esra.musicapp.services.AlbumService;
 import com.esra.musicapp.services.UserService;
+
 
 @RequestMapping("/albums")
 @Controller
@@ -26,22 +28,29 @@ public class HomeController {
 	@Autowired
 	private AlbumService albumService;
 	
+	@GetMapping("/dashboard")
+	public String albums(Model model, HttpSession session, @ModelAttribute("album") Album album) {
+		User user = this.userService.findOneUser((Long) session.getAttribute("user__id"));
+		model.addAttribute("user", user);
+		model.addAttribute("allAlbums", this.albumService.allAlbums());
+		return "dashboard.jsp";
+	}
 	
 	//create album
-	@GetMapping("/dashboard")
+	@GetMapping("/dashboard/new")
 	public String dashboard(HttpSession session, Model viewModel, @ModelAttribute("album") Album album) {
 		User user = this.userService.findOneUser((Long) session.getAttribute("user__id"));
 		viewModel.addAttribute("user", user);
 		viewModel.addAttribute("allalbums", this.albumService.allAlbums());
 		return "dashboard.jsp";
 	}
-	@PostMapping("/addalbums")
+	@PostMapping("/dashboard/create")
 	public String addAlbum(@Valid @ModelAttribute("album") Album album, BindingResult result, HttpSession session, Model viewModel) {
 		User user = this.userService.findOneUser((Long) session.getAttribute("user__id"));
 		if(result.hasErrors()) {
 			viewModel.addAttribute("user", user);
 			viewModel.addAttribute("allAlbums", this.albumService.allAlbums());
-			return "dashboard.jsp";
+			return "new.jsp";
 		}
 		album.setUser(user);
 		 this.albumService.create(album);
