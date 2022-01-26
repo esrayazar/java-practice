@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,6 +19,7 @@ import com.esra.musicapp.models.Album;
 import com.esra.musicapp.models.User;
 import com.esra.musicapp.services.AlbumService;
 import com.esra.musicapp.services.UserService;
+import com.esra.stuff.models.Thought;
 
 
 @RequestMapping("/albums")
@@ -90,6 +92,20 @@ public class HomeController {
 //		this.albumService.updateAlbum(id,album.getAlbumName(), album.getDescription());
 //		return "redirect:/albums";
 //	}
+//	@GetMapping("/{id}/like")
+//	public String like(HttpSession session, @PathVariable("id") Long id) {
+//		User user = this.userService.findOneUser((Long) session.getAttribute("user__id"));
+//		Album thought = this.albumService.getOneAlbum(id);
+//		this.albumService.likeAlbum(user, thought);
+//		return "redirect:/thoughts/dashboard";
+//	}
+	@GetMapping("/{id}/unlike")
+	public String unlike(HttpSession session, @PathVariable("id") Long id) {
+		User user = this.userService.findOneUser((Long) session.getAttribute("user__id"));
+		Thought thought = this.thoughtService.getOneThought(id);
+		this.thoughtService.unlikeThought(user, thought);
+		return "redirect:/thoughts/dashboard";
+	}
 //	
 //	
 	
