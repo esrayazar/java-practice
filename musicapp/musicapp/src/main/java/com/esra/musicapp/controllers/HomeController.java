@@ -19,7 +19,7 @@ import com.esra.musicapp.models.Album;
 import com.esra.musicapp.models.User;
 import com.esra.musicapp.services.AlbumService;
 import com.esra.musicapp.services.UserService;
-import com.esra.stuff.models.Thought;
+
 
 
 @RequestMapping("/albums")
@@ -99,13 +99,13 @@ public class HomeController {
 //		this.albumService.likeAlbum(user, thought);
 //		return "redirect:/thoughts/dashboard";
 //	}
-	@GetMapping("/{id}/unlike")
-	public String unlike(HttpSession session, @PathVariable("id") Long id) {
-		User user = this.userService.findOneUser((Long) session.getAttribute("user__id"));
-		Album thought = this.albumService.getOneAlbum(id);
-		this.albumService.unlikeThought(user, thought);
-		return "redirect:/thoughts/dashboard";
-	}
+//	@GetMapping("/{id}/unlike")
+//	public String unlike(HttpSession session, @PathVariable("id") Long id) {
+//		User user = this.userService.findOneUser((Long) session.getAttribute("user__id"));
+//		Album thought = this.albumService.getOneAlbum(id);
+//		this.albumService.unlikeThought(user, thought);
+//		return "redirect:/thoughts/dashboard";
+//	}
 //	
 //	
 	
