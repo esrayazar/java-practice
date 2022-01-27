@@ -78,6 +78,25 @@ public class Album {
 	public void setRatings(List<Rating> ratings) {
 		this.ratings = ratings;
 	}
+	public int getAvarageRating() {
+		int sum=0;
+		for(int i=0; i<this.ratings.size(); i++) {
+			sum+=ratings.get(i).getRating();
+		}
+		if (sum==0) {
+			return 0;
+		}
+		return sum/ratings.size();
+		
+//		public float getAvarageRating() {
+//			int sum=0;
+//			for(Rating rating: ratings) {
+//				sum+=rating.getRating();
+//				return sum/this.ratings.size();
+//			}	
+//		}
+		
+	}
 	
 	
 	
