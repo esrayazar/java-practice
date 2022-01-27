@@ -23,21 +23,12 @@
 <a href="/albums/edit/${album.id}">Edit</a>
 </c:if>
 <hr>
-<h5 class="text-success"> Leave a rating:</h5>
-<form:form action="/albums/rateAlbum" method="post" modelAttribute="newRating">
-	<div class="form-group">
-		<form:label path="rating">Rating:</form:label>
-		<form:errors path="rating"/>
-		<form:input class="form-control" path="rating"/>
-	<form:input type="hidden" value="${userId}" path="ratedBy"/>
-	<input type="submit" class="btn btn-primary" value="submit"/>
-	</div>
-	</form:form>
+
 <%-- <p>A 
 <c:out value="${album.user.id}"/></p>
 <p> B <c:out value="${userLoggedIn}"/></p> --%>
 <hr>
-<%-- <hr>
+<hr>
 <h5>Users who rated the show</h5>
 <table class="table table-striped">
 <thead>
@@ -58,7 +49,7 @@ You have already rated!!
 </c:forEach>
 </table>
 <c:choose>
-<c:when test=""${album.ratings.contains(userLoggedIn)}">
+<c:when test="${album.ratings.contains(userLoggedIn)}">
 You have already liked this album!!
 </c:when>
 <c:otherwise>
@@ -67,12 +58,12 @@ You have already liked this album!!
 <div class="form-group">
 	<form:label path="rating">Rating: </form:label>
 	<form:input class="form-control" path="rating"/>
-	<form:input type="hidden" value="${userId}" path="ratedBy"/>
-	<form:input type="hidden" value="${album.id}" path="showRated"/>
+	<form:input type="hidden" value="${user__id}" path="ratedBy"/>
+	<form:input type="hidden" value="${album.id}" path="albumRated"/>
 	<input type="submit" class="btn btn-primary" value="submit"/>
 </div>
 </form:form>
 </c:otherwise>
-</c:choose> --%>
+</c:choose> 
 </t:partial>
 </body>
