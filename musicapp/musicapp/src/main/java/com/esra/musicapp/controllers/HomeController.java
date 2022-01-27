@@ -33,6 +33,7 @@ public class HomeController {
 	@Autowired
 	private AlbumService albumService;
 	
+	
 
 	@GetMapping("/dashboard")
 	public String albums (Model model, HttpSession session) {
@@ -105,10 +106,10 @@ public class HomeController {
 	
 	
 	//Add Rating
-	@PostMapping("/ratealbum")
+	@PostMapping("/rateAlbum")
 	public String rate(@Valid @ModelAttribute("newRating") Rating rating, BindingResult result) {
 		albumService.addRating(rating);
-		return "redirect:/dashboard";
+		return "redirect:/albums/dashboard";
 	}
 	
 	

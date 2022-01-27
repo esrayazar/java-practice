@@ -49,6 +49,7 @@ public class AlbumService {
 
 	//Rating
 	public Rating addRating (Rating rating) {
+		System.out.println("creating a rating");
 		return ratingRepository.save(rating);
 	}
 	
