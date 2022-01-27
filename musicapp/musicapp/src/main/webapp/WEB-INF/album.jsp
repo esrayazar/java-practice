@@ -22,6 +22,17 @@
 <a href="/albums/delete/${album.id}">Delete</a>
 <a href="/albums/edit/${album.id}">Edit</a>
 </c:if>
+<hr>
+<h5 class="text-success"> Leave a rating:</h5>
+<form:form action="/albums/rateAlbum" method="post" modelAttribute="newRating">
+	<div class="form-group">
+		<form:label path="rating">Rating:</form:label>
+		<form:errors path="rating"/>
+		<form:input class="form-control" path="rating"/>
+	<form:input type="hidden" value="${userId}" path="ratedBy"/>
+	<input type="submit" class="btn btn-primary" value="submit"/>
+	</div>
+	</form:form>
 <%-- <p>A 
 <c:out value="${album.user.id}"/></p>
 <p> B <c:out value="${userLoggedIn}"/></p> --%>
