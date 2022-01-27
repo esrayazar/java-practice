@@ -25,7 +25,12 @@
               <c:out value="${album.user.firstName}" />
             <%--   <c:out value="${album.User.lastName}" /> --%>
             </td>
-            <td>Rating</td>
+            <td>
+    
+            ${album.getAvarageRating()}
+            
+            
+            </td>
           
           </tr>
         </c:forEach>
