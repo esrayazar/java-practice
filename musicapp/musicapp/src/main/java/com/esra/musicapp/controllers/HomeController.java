@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.esra.musicapp.models.Album;
+import com.esra.musicapp.models.Rating;
 import com.esra.musicapp.models.User;
 import com.esra.musicapp.services.AlbumService;
 import com.esra.musicapp.services.UserService;
@@ -69,7 +70,7 @@ public class HomeController {
 	}
 	//Get one album details 
 	@GetMapping("/album/{id}")
-	public String project(@PathVariable("id")Long albumId, Model model,HttpSession session) {
+	public String project(@PathVariable("id")Long albumId, Model model,HttpSession session, @ModelAttribute("newRating")Rating rating) {
 		Album album = albumService.getOneAlbum(albumId);
 		model.addAttribute("album", album);
 		model.addAttribute("userLoggedIn", (Long)session.getAttribute("user__id"));
@@ -101,6 +102,16 @@ public class HomeController {
 		this.albumService.updateAlbum(id,album.getAlbumName(), album.getDescription());
 		return "redirect:/albums";
 	}
+	
+	
+	//Add Rating
+	@PostMapping("/ratealbum")
+	public String rate(@Valid @ModelAttribute("newRating") Rating rating, BindingResult result) {
+		albumService.addRating(rating);
+		return "redirect:/dashboard";
+	}
+	
+	
 //	@GetMapping("/{id}/like")
 //	public String like(HttpSession session, @PathVariable("id") Long id) {
 //		User user = this.userService.findOneUser((Long) session.getAttribute("user__id"));

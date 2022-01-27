@@ -6,13 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.esra.musicapp.models.Album;
+import com.esra.musicapp.models.Rating;
 import com.esra.musicapp.repositories.AlbumRepository;
+import com.esra.musicapp.repositories.RatingRepository;
 
 
 @Service
 public class AlbumService {
 	@Autowired
 	private AlbumRepository albumRepository;
+	@Autowired
+	private RatingRepository ratingRepository;
 	
 	//Create
 	public Album create(Album  album) {
@@ -42,4 +46,11 @@ public class AlbumService {
 		album.setDescription(description);
 		return albumRepository.save(album);
 	}
+
+	//Rating
+	public Rating addRating (Rating rating) {
+		return ratingRepository.save(rating);
+	}
+	
+	
 }
